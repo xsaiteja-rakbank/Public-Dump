@@ -1,0 +1,73 @@
+extends: [[spectral:oas, off]]
+
+rules:
+  api-description:
+    description: "API info object must have a non-empty description."
+    message: "Missing API description in info block."
+    severity: warn
+    given: "$.info"
+    then:
+      field: description
+      function: defined
+
+  api-contact:
+    description: "API info object should have a contact object."
+    message: "Missing contact information in info block."
+    severity: info
+    given: "$.info"
+    then:
+      field: contact
+      function: defined
+
+  operation-description:
+    description: "Every operation must have a description or summary."
+    message: "Operation {{path}} is missing a description."
+    severity: warn
+    given: "$.paths.*[get,post,put,delete,patch,options,head]"
+    then:
+      field: description
+      function: defined
+
+  operation-operationId:
+    description: "Every operation must have an operationId."
+    message: "Operation {{path}} is missing an operationId."
+    severity: warn
+    given: "$.paths.*[get,post,put,delete,patch,options,head]"
+    then:
+      field: operationId
+      function: defined
+
+  operation-tags:
+    description: "Every operation must have at least one tag."
+    message: "Operation {{path}} is missing tags."
+    severity: warn
+    given: "$.paths.*[get,post,put,delete,patch,options,head]"
+    then:
+      field: tags
+      function: defined
+
+  operation-2xx-response:
+    description: "Operations should define at least one 2xx response."
+    message: "Operation {{path}} does not define a 2xx or default response."
+    severity: warn
+    given: "$.paths.*[get,post,put,delete,patch,options,head].responses"
+    then:
+      function: defined
+
+  response-description:
+    description: "Every response must have a description."
+    message: "Response at {{path}} is missing a description."
+    severity: warn
+    given: "$.paths.*[get,post,put,delete,patch,options,head].responses.*"
+    then:
+      field: description
+      function: defined
+
+  no-empty-servers:
+    description: "OpenAPI specification must define servers."
+    message: "No server definitions found in OpenAPI spec."
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: defined

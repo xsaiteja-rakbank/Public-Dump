@@ -1,0 +1,23 @@
+{
+  "name": "kong-api-onboarding-automation",
+  "version": "1.0.0",
+  "description": "Enterprise self-service platform for automated Kong API onboarding",
+  "scripts": {
+    "start": "node backend/src/server.js",
+    "dev:backend": "node --watch backend/src/server.js",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "build:frontend": "npm run build --prefix frontend",
+    "build": "npm run build:frontend",
+    "test:lint": "node backend/src/lint/spectralRunner.js"
+  },
+  "keywords": [
+    "kong",
+    "deck",
+    "openapi",
+    "swagger",
+    "spectral",
+    "gitops"
+  ],
+  "author": "Google Deepmind / Antigravity",
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,47 @@
+{
+  "name": "openid-connect",
+  "displayName": "OpenID Connect",
+  "category": "Authentication",
+  "description": "Integrate Kong with a 3rd party OpenID Connect identity provider.",
+  "frequentlyUsed": false,
+  "fields": [
+    {
+      "name": "issuer",
+      "label": "Issuer URL",
+      "type": "string",
+      "default": "https://auth.company.com/oauth2/default",
+      "required": true,
+      "description": "The discovery endpoint or issuer URL."
+    },
+    {
+      "name": "client_id",
+      "label": "Client ID (array)",
+      "type": "array",
+      "default": ["kong-gateway-client"],
+      "required": true,
+      "description": "The client identifier registered with the IdP."
+    },
+    {
+      "name": "client_secret",
+      "label": "Client Secret",
+      "type": "string",
+      "default": "",
+      "required": false,
+      "description": "The client secret for confidential clients."
+    },
+    {
+      "name": "auth_methods",
+      "label": "Auth Methods",
+      "type": "array",
+      "default": ["bearer"],
+      "description": "Authentication methods to support (bearer, authorization_code, etc.)."
+    },
+    {
+      "name": "scopes",
+      "label": "Scopes",
+      "type": "array",
+      "default": ["openid", "profile", "email"],
+      "description": "OpenID Connect scopes to request."
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "rate-limiting",
+  "displayName": "Rate Limiting",
+  "category": "Traffic Control",
+  "description": "Rate limit incoming requests by second, minute, hour, day, month, or year.",
+  "frequentlyUsed": true,
+  "fields": [
+    {
+      "name": "minute",
+      "label": "Minute Limit",
+      "type": "number",
+      "default": 1000,
+      "description": "The number of HTTP requests allowed per minute."
+    },
+    {
+      "name": "hour",
+      "label": "Hour Limit",
+      "type": "number",
+      "default": 10000,
+      "description": "The number of HTTP requests allowed per hour."
+    },
+    {
+      "name": "policy",
+      "label": "Policy",
+      "type": "select",
+      "default": "local",
+      "options": ["local", "cluster", "redis"],
+      "description": "The rate-limiting strategy used to retrieve and increment counters."
+    },
+    {
+      "name": "fault_tolerant",
+      "label": "Fault Tolerant",
+      "type": "boolean",
+      "default": true,
+      "description": "A boolean value that determines if the request should be proxied even if Kong is unable to connect to Redis/Cluster."
+    },
+    {
+      "name": "hide_client_headers",
+      "label": "Hide Client Headers",
+      "type": "boolean",
+      "default": false,
+      "description": "Optionally hide rate limit headers from the client."
+    }
+  ]
+}

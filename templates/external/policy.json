@@ -1,0 +1,43 @@
+{
+  "exposure": "external",
+  "name": "External Kong Exposure Policy",
+  "description": "Recommended hardening policy for public or partner-facing APIs.",
+  "recommendedPlugins": [
+    "key-auth",
+    "rate-limiting",
+    "correlation-id"
+  ],
+  "optionalPlugins": [
+    "cors",
+    "acl",
+    "ip-restriction",
+    "response-transformer"
+  ],
+  "defaults": {
+    "key-auth": {
+      "key_names": ["x-api-key"],
+      "key_in_header": true,
+      "key_in_query": false,
+      "hide_credentials": true
+    },
+    "rate-limiting": {
+      "minute": 1000,
+      "hour": 10000,
+      "policy": "local",
+      "fault_tolerant": true,
+      "hide_client_headers": false
+    },
+    "correlation-id": {
+      "header_name": "X-Correlation-ID",
+      "generator": "uuid#v4",
+      "echo_downstream": true
+    },
+    "cors": {
+      "origins": ["*"],
+      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+      "headers": ["Accept", "Content-Type", "Authorization", "X-Correlation-ID"],
+      "credentials": true,
+      "max_age": 3600
+    }
+  }
+}

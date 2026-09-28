@@ -1,0 +1,23 @@
+[
+  {
+    "id": "audit-1790581786770",
+    "timestamp": "2026-09-28T07:49:46.770Z",
+    "apiName": "Customer API",
+    "apiVersion": "v1",
+    "kongType": "external",
+    "selectedPlugins": [
+      "key-auth",
+      "rate-limiting",
+      "correlation-id"
+    ],
+    "targetEnvironment": "UAT",
+    "repository": "customer-api-kong",
+    "targetBranch": "UAT",
+    "featureBranch": "feature/customer-api-onboarding-6110",
+    "lintIssuesFound": 12,
+    "lintIssuesAutoFixed": 12,
+    "finalLintStatus": "PASSED",
+    "gitPushStatus": "SUCCESS",
+    "metadata": {}
+  }
+]

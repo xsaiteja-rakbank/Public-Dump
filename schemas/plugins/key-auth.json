@@ -1,0 +1,37 @@
+{
+  "name": "key-auth",
+  "displayName": "Key Authentication",
+  "category": "Authentication",
+  "description": "Add key authentication (API key) to an API or service.",
+  "frequentlyUsed": true,
+  "fields": [
+    {
+      "name": "key_names",
+      "label": "Key Names (comma separated)",
+      "type": "array",
+      "default": ["apikey", "x-api-key"],
+      "description": "Key names that can be accepted from headers or query parameters."
+    },
+    {
+      "name": "key_in_header",
+      "label": "Key in Header",
+      "type": "boolean",
+      "default": true,
+      "description": "Allow key in HTTP header."
+    },
+    {
+      "name": "key_in_query",
+      "label": "Key in Query",
+      "type": "boolean",
+      "default": true,
+      "description": "Allow key in query parameters."
+    },
+    {
+      "name": "hide_credentials",
+      "label": "Hide Credentials",
+      "type": "boolean",
+      "default": true,
+      "description": "Strip credentials before forwarding to upstream."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: Broken Customer API
+  version: v1
+  description: Invalid specification for testing validation errors
+
+paths:
+  /customer/{id}:
+    get:
+      summary: Get customer by id without required path parameter definition
+      responses:
+        '200':
+          description: Customer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NonExistentCustomer'
+
+components:
+  schemas: {}

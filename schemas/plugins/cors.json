@@ -1,0 +1,44 @@
+{
+  "name": "cors",
+  "displayName": "CORS",
+  "category": "Security",
+  "description": "Enable Cross-Origin Resource Sharing (CORS) on your API.",
+  "frequentlyUsed": true,
+  "fields": [
+    {
+      "name": "origins",
+      "label": "Allowed Origins (comma separated)",
+      "type": "array",
+      "default": ["*"],
+      "description": "List of allowed domains for the Access-Control-Allow-Origin header."
+    },
+    {
+      "name": "methods",
+      "label": "Allowed Methods (comma separated)",
+      "type": "array",
+      "default": ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
+      "description": "List of allowed HTTP methods."
+    },
+    {
+      "name": "headers",
+      "label": "Allowed Headers (comma separated)",
+      "type": "array",
+      "default": ["Accept", "Accept-Version", "Content-Length", "Content-MD5", "Content-Type", "Date", "X-Auth-Token", "Authorization"],
+      "description": "List of allowed HTTP request headers."
+    },
+    {
+      "name": "credentials",
+      "label": "Allow Credentials",
+      "type": "boolean",
+      "default": true,
+      "description": "Flag to determine whether the Access-Control-Allow-Credentials header should be sent as true."
+    },
+    {
+      "name": "max_age",
+      "label": "Max Age (seconds)",
+      "type": "number",
+      "default": 3600,
+      "description": "Indicates how long the results of a preflight request can be cached."
+    }
+  ]
+}

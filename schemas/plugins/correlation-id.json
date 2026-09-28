@@ -1,0 +1,32 @@
+{
+  "name": "correlation-id",
+  "displayName": "Correlation ID",
+  "category": "Analytics & Monitoring",
+  "description": "Correlate requests and responses using a unique identifier.",
+  "frequentlyUsed": true,
+  "fields": [
+    {
+      "name": "header_name",
+      "label": "Header Name",
+      "type": "string",
+      "default": "X-Correlation-ID",
+      "required": true,
+      "description": "The HTTP header name to use for the correlation ID."
+    },
+    {
+      "name": "generator",
+      "label": "Generator",
+      "type": "select",
+      "default": "uuid#v4",
+      "options": ["uuid#v4", "uuid#counter", "tracker"],
+      "description": "The generator to use for creating IDs."
+    },
+    {
+      "name": "echo_downstream",
+      "label": "Echo Downstream",
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to echo the correlation ID back to the downstream client."
+    }
+  ]
+}

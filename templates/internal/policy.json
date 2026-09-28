@@ -1,0 +1,28 @@
+{
+  "exposure": "internal",
+  "name": "Internal Kong Exposure Policy",
+  "description": "Recommended configuration for internal microservices and intra-cluster communication.",
+  "recommendedPlugins": [
+    "correlation-id",
+    "key-auth"
+  ],
+  "optionalPlugins": [
+    "rate-limiting",
+    "acl",
+    "cors",
+    "request-transformer"
+  ],
+  "defaults": {
+    "correlation-id": {
+      "header_name": "X-Correlation-ID",
+      "generator": "uuid#v4",
+      "echo_downstream": true
+    },
+    "key-auth": {
+      "key_names": ["apikey", "x-api-key"],
+      "key_in_header": true,
+      "key_in_query": false,
+      "hide_credentials": true
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "acl",
+  "displayName": "ACL",
+  "category": "Security",
+  "description": "Restrict access to an API by allowing or denying consumer groups.",
+  "frequentlyUsed": true,
+  "fields": [
+    {
+      "name": "allow",
+      "label": "Allowed Groups (comma separated)",
+      "type": "array",
+      "default": ["internal-consumers", "partner-apis"],
+      "description": "Arbitrary group names that are allowed to consume the service."
+    },
+    {
+      "name": "deny",
+      "label": "Denied Groups (comma separated)",
+      "type": "array",
+      "default": [],
+      "description": "Arbitrary group names that are not allowed to consume the service."
+    },
+    {
+      "name": "hide_groups_header",
+      "label": "Hide Groups Header",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to hide the X-Consumer-Groups header."
+    }
+  ]
+}

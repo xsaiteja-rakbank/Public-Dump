@@ -1,0 +1,23 @@
+{
+  "name": "response-transformer",
+  "displayName": "Response Transformer",
+  "category": "Transformation",
+  "description": "Transform responses before returning them to the downstream client.",
+  "frequentlyUsed": true,
+  "fields": [
+    {
+      "name": "add_headers",
+      "label": "Add Headers (key:value)",
+      "type": "array",
+      "default": ["X-Response-From:Kong-API-Platform"],
+      "description": "List of header:value pairs to add to the response."
+    },
+    {
+      "name": "remove_headers",
+      "label": "Remove Headers",
+      "type": "array",
+      "default": ["X-Powered-By", "Server"],
+      "description": "List of headers to remove from the response."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "request-transformer",
+  "displayName": "Request Transformer",
+  "category": "Transformation",
+  "description": "Transform requests before they are sent to the upstream service.",
+  "frequentlyUsed": true,
+  "fields": [
+    {
+      "name": "add_headers",
+      "label": "Add Headers (key:value)",
+      "type": "array",
+      "default": ["X-Forwarded-By:Kong-Gateway"],
+      "description": "List of header:value pairs to add to the request."
+    },
+    {
+      "name": "remove_headers",
+      "label": "Remove Headers",
+      "type": "array",
+      "default": ["X-Internal-Secret"],
+      "description": "List of headers to remove from the request."
+    }
+  ]
+}
