@@ -1,0 +1,8 @@
+services:
+  - name: customer-api-service
+    url: https://api-uat.company.com/customer
+    tags:
+      - onboarding-platform
+      - api:customer-api
+      - version:v1
+      - exposure:external

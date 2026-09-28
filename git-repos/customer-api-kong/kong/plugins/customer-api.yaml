@@ -1,0 +1,26 @@
+plugins:
+  - name: key-auth
+    enabled: true
+    config:
+      key_names:
+        - x-api-key
+      key_in_header: true
+      key_in_query: true
+      hide_credentials: true
+    service: customer-api-service
+  - name: rate-limiting
+    enabled: true
+    config:
+      minute: 1000
+      hour: 10000
+      policy: local
+      fault_tolerant: true
+      hide_client_headers: false
+    service: customer-api-service
+  - name: correlation-id
+    enabled: true
+    config:
+      header_name: X-Correlation-ID
+      generator: uuid#v4
+      echo_downstream: true
+    service: customer-api-service

@@ -1,0 +1,16 @@
+routes:
+  - name: customer-api-route
+    service: customer-api-service
+    paths:
+      - /customers
+    methods:
+      - GET
+      - POST
+      - DELETE
+    strip_path: false
+    preserve_host: true
+    tags:
+      - onboarding-platform
+      - api:customer-api
+      - version:v1
+      - exposure:external

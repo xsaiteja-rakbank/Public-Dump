@@ -1,0 +1,46 @@
+_format_version: '3.0'
+_info:
+  select_tags:
+    - api:customer-api
+services:
+  - name: customer-api-service
+    url: https://api-uat.company.com/customer
+    tags: &ref_0
+      - onboarding-platform
+      - api:customer-api
+      - version:v1
+      - exposure:external
+    routes:
+      - name: customer-api-route
+        paths:
+          - /customers
+        methods:
+          - GET
+          - POST
+          - DELETE
+        strip_path: false
+        preserve_host: true
+        tags: *ref_0
+    plugins:
+      - name: key-auth
+        enabled: true
+        config:
+          key_names:
+            - x-api-key
+          key_in_header: true
+          key_in_query: true
+          hide_credentials: true
+      - name: rate-limiting
+        enabled: true
+        config:
+          minute: 1000
+          hour: 10000
+          policy: local
+          fault_tolerant: true
+          hide_client_headers: false
+      - name: correlation-id
+        enabled: true
+        config:
+          header_name: X-Correlation-ID
+          generator: uuid#v4
+          echo_downstream: true

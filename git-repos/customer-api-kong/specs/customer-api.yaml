@@ -1,0 +1,156 @@
+openapi: 3.0.3
+info:
+  title: Customer API
+  version: v1
+  description: Customer management API for retail and enterprise accounts.
+  contact:
+    name: API Platform Team
+    email: api-platform@company.com
+servers:
+  - url: https://api-dev.company.com/customer
+    description: develop
+  - url: https://api-sit.company.com/customer
+    description: SIT
+  - url: https://api-uat.company.com/customer
+    description: UAT
+  - url: https://api-replica.company.com/customer
+    description: replica
+  - url: https://api.company.com/customer
+    description: production
+paths:
+  /customers:
+    get:
+      summary: List all customers
+      responses:
+        '200':
+          description: A list of customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+      description: List all customers
+      operationId: getCustomers
+      tags:
+        - customers
+    post:
+      summary: Create a new customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerInput'
+      responses:
+        '201':
+          description: Customer created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: Invalid request payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      description: Create a new customer
+      operationId: createCustomers
+      tags:
+        - customers
+  /customers/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The customer unique identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Customer found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '404':
+          description: Customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      description: Retrieve customer by id.
+      operationId: getCustomersById
+      tags:
+        - customers
+    delete:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The customer unique identifier
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Customer deleted successfully
+      description: Delete customer by id.
+      operationId: deleteCustomersById
+      tags:
+        - customers
+components:
+  schemas:
+    Customer:
+      type: object
+      required:
+        - id
+        - name
+        - email
+      properties:
+        id:
+          type: string
+          example: cust_12345
+        name:
+          type: string
+          example: Acme Corp
+        email:
+          type: string
+          format: email
+          example: support@acme.com
+        tier:
+          type: string
+          enum:
+            - standard
+            - premium
+            - enterprise
+          default: standard
+    CustomerInput:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          type: string
+          example: Acme Corp
+        email:
+          type: string
+          format: email
+          example: support@acme.com
+    ErrorResponse:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          example: INVALID_REQUEST
+        message:
+          type: string
+          example: The request body was malformed
+tags:
+  - name: customers
+    description: Operations related to customers
